@@ -1,0 +1,14 @@
+1. python --version
+2. pip install virtualenvwrapper-win
+3. mkvirtualenv MyVirtualEnv
+4. workon MyVirtualEnv
+5. pip install django
+6. django-admin startproject fungames
+7. cd fungames
+8. python manage.py runserver
+9. python manage.py startapp endgame
+10. python manage.py migrate -> La base de datos por defecto es sqlite
+-----------------------------------------------------------------------------
+Change your models (in models.py).
+Run python manage.py makemigrations to create migrations for those changes
+Run python manage.py migrate to apply those changes to the database.

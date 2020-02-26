@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endgame - Results</title>
+</head>
+<body>
+    
+    <h1>You are:
+        {% if player_number == '1' %}
+            {{ player_name1 }}
+        {% else %}
+            {{ player_name2 }}
+        {% endif %}
+    </h1>
+    <h1>Answer by player: {{ player_name1 }}</h1>
+        {% for option in options.all %}
+            
+            {% if option.id == opt_player1 %}
+                <input type="radio" name="option1_{{ forloop.counter }}" id="option1_{{ forloop.counter }}" value="{{ option.id }}" checked disabled>
+                <label for="option{{ forloop.counter }}">{{ option.description }}</label><br>
+            {% else %}
+                <input type="radio" name="option1_{{ forloop.counter }}" id="option1_{{ forloop.counter }}" value="{{ option.id }}" disabled>
+                <label for="option{{ forloop.counter }}">{{ option.description }}</label><br>
+            {% endif %}
+
+        {% endfor %}
+
+        <h1>Answer by player: {{ player_name2 }}</h1>
+        {% for option in options.all %}
+            {% if option.id == opt_player2 %}
+                <input type="radio" name="option2_{{ forloop.counter }}" id="option2_{{ forloop.counter }}" value="{{ option.id }}" checked disabled>
+                <label for="option{{ forloop.counter }}">{{ option.description }}</label><br>
+            {% else %}
+                <input type="radio" name="option2_{{ forloop.counter }}" id="option2_{{ forloop.counter }}" value="{{ option.id }}" disabled>
+                <label for="option{{ forloop.counter }}">{{ option.description }}</label><br>
+            {% endif %}
+        {% endfor %}
+
+        <h1>Results: {{ results_msj }}</h1>
+</body>
+</html>

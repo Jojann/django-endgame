@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endgame - play</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'endgame/style.css' %}">
+    <script src="{% static 'endgame/game.js' %}"></script>
+    
+</head>
+<body>
+    <h1> Welcome a new GAME! Are you ready? </h1>
+
+    <button onclick="startWorker()">Ready</button>
+    
+    <h2 id="state" name="state"></h2>
+
+    <form action="{% url 'endgame:gameresults' %}" method="post">
+        
+        <input type="text" value="{{ game_id }}" name="game_id" id="game_id" readonly hidden>
+        <input type="text" value="{{ player_id }}" name="player_id" id="player_id" readonly hidden>
+        <input type="text" value="{{ player_number }}" name="player_number" id="player_number" readonly hidden>
+        
+        {% csrf_token %}
+        {% for option in options.all %}
+            <input type="radio" onClick="updateAnswer()" name="option_id" id="option{{ forloop.counter }}" value="{{ option.id }}" >
+            <label for="option{{ forloop.counter }}">{{ option.description }}</label><br>
+        {% endfor %}
+        
+        <input type="submit" value="Answer" id="answer" name="answer" disabled>
+        <p id="msj_wait" name="msj_wait"></p>
+    </form>
+
+</body>
+</html>

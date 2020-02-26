@@ -1,0 +1,5 @@
+include LICENSE
+include README.rst
+recursive-include endgame/static *
+recursive-include endgame/templates *
+recursive-include docs *

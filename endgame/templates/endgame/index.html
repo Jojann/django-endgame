@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endgame - register</title>
+</head>
+<body>
+
+    <h1>Welcome! for you can play please enter your name</h1>
+
+{% block content %}
+    <h2>Now create a new fun game</h2>
+    <form method="POST" class="post-form" >{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">To play</button>
+    </form>
+    {% if error %}
+        <p><strong>{{ error }}</strong></p>        
+    {% endif %}
+    {% if player_id %}
+        <a href="{% url 'endgame:game' player_id %}">I am [{{ player_name }}]</a> 
+    {% endif %}
+    
+{% endblock %}
+
+</body>
+</html>
